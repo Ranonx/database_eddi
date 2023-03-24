@@ -38,6 +38,7 @@ app.get("/table", function (req, res) {
 
 app.get("/table-data", (req, res) => {
   const searchTerm = req.query.searchTerm;
+  console.log(`recieved searchTerm: ${searchTerm}`);
   queries.getFootData(searchTerm, (error, tableData) => {
     if (error) {
       res.status(500).send("Error retrieving table data");

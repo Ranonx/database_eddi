@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(`/table-data?searchTerm=${searchValue}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(`data: ${data}`);
         // Clear existing table rows
         tableBody.innerHTML = "";
 
