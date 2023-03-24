@@ -1,7 +1,13 @@
 const db = require("./db");
 
-const getFootData = (callback) => {
-  const sql = "SELECT * FROM foot_data";
+const getFootData = (searchQuery, callback) => {
+  let sql = "SELECT * FROM foot_data";
+  console.log(searchQuery);
+  if (searchQuery) {
+    // Add a WHERE clause to filter the results based on the search query
+    sql += ` WHERE name LIKE '%${searchQuery}%' OR id_num LIKE '%${searchQuery}%'`;
+  }
+
   if (typeof callback === "function") {
     db.query(sql, (error, result) => {
       if (error) {

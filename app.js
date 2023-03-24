@@ -1,5 +1,6 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
+const path = require("path");
 
 const db = require("./models/db");
 const queries = require("./models/queries");
@@ -24,13 +25,24 @@ app.get("/table", function (req, res) {
 });
 
 // define route to fetch table data
+// app.get("/table-data", (req, res) => {
+//   queries.getFootData((error, tableData) => {
+//     if (error) {
+//       console.log(error);
+//       res.status(500).send("Internal server error");
+//     } else {
+//       res.json(tableData);
+//     }
+//   });
+// });
+
 app.get("/table-data", (req, res) => {
-  queries.getFootData((error, tableData) => {
+  const searchTerm = req.query.searchTerm;
+  queries.getFootData(searchTerm, (error, tableData) => {
     if (error) {
-      console.log(error);
-      res.status(500).send("Internal server error");
+      res.status(500).send("Error retrieving table data");
     } else {
-      res.json(tableData);
+      res.send(tableData);
     }
   });
 });

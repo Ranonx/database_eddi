@@ -1,4 +1,5 @@
 /* globals Chart:false, feather:false */
+console.log("dashboard.js loaded");
 
 (() => {
   "use strict";
