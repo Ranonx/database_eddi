@@ -2,8 +2,11 @@
   <div
     class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5"
   >
-    <h1 class="text-body-emphasis">上传文档</h1>
-    <p class="col-lg-6 mx-auto mb-4">上传PDF文件并点击上传按钮。</p>
+    <div class="container">
+      <h1 class="text-body-emphasis">上传文档</h1>
+      <p class="col-lg-6 mx-auto mb-4">上传PDF文件并点击上传按钮。</p>
+    </div>
+
     <div class="upload-container">
       <form
         id="upload-form"
@@ -39,7 +42,42 @@
     </div>
 
     <div class="result-container">
-      <div id="table-container"></div>
+      <div class="table-responsive">
+        <table id="data-table" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th rowspan="2">身份证号</th>
+              <th rowspan="2">姓名</th>
+              <th rowspan="2">性别</th>
+              <th colspan="9">左脚</th>
+              <th colspan="9">右脚</th>
+            </tr>
+            <tr>
+              <th>鞋码</th>
+              <th>足弓长度</th>
+              <th>足弓宽度</th>
+              <th>后跟宽度</th>
+              <th>足长</th>
+              <th>足宽</th>
+              <th>球围</th>
+              <th>足弓指数</th>
+              <th>足弓比例</th>
+              <th>鞋码</th>
+              <th>足弓长度</th>
+              <th>足弓宽度</th>
+              <th>后跟宽度</th>
+              <th>足长</th>
+              <th>足宽</th>
+              <th>球围</th>
+              <th>足弓指数</th>
+              <th>足弓比例</th>
+            </tr>
+          </thead>
+          <tbody id="data-tbody">
+            <!-- Table rows will be populated with JavaScript -->
+          </tbody>
+        </table>
+      </div>
       <div class="d-flex gap-2 justify-content-center">
         <button
           id="upload-to-db"
@@ -66,93 +104,119 @@
       </div>
     </div>
   </div>
-</div>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-  crossorigin="anonymous"
-></script>
-<script>
-  function toggleDisplay(element, show) {
-    element.classList.toggle("d-none", !show);
-  }
+  <script>
+    function toggleDisplay(element, show) {
+      element.classList.toggle("d-none", !show);
+    }
 
-  const progressBar = document.querySelector(".progress-bar");
-  const progress = document.querySelector(".progress");
-  const tableContainer = document.getElementById("table-container");
-  const uploadBtn = document.getElementById("upload-to-db");
-  const DataUploadBtn = document.getElementById("DataUploadButton");
+    const progressBar = document.querySelector(".progress-bar");
+    const progress = document.querySelector(".progress");
+    const tableContainer = document.getElementById("table-container");
+    const uploadBtn = document.getElementById("upload-to-db");
+    const DataUploadBtn = document.getElementById("DataUploadButton");
 
-  document
-    .getElementById("upload-form")
-    .addEventListener("submit", async (event) => {
-      event.preventDefault();
+    document
+      .getElementById("upload-form")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-      toggleDisplay(progressBar, true);
-      toggleDisplay(progress, true);
+        toggleDisplay(progress, true);
 
-      const formData = new FormData();
-      const fileInput = DataUploadBtn;
-      for (const file of fileInput.files) {
-        formData.append("pdf", file);
-      }
-
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", "/upload");
-      xhr.upload.addEventListener("progress", (event) => {
-        if (event.lengthComputable) {
-          const percentComplete = (event.loaded / event.total) * 100;
-          progressBar.style.width = percentComplete + "%";
-          progressBar.setAttribute("aria-valuenow", percentComplete);
+        const formData = new FormData();
+        const fileInput = DataUploadBtn;
+        for (const file of fileInput.files) {
+          formData.append("pdf", file);
         }
-      });
-      xhr.onload = function () {
-        if (xhr.status === 200) {
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/upload", true);
+
+        // Update the progress bar
+        xhr.upload.addEventListener("progress", (event) => {
+          if (event.lengthComputable) {
+            const percentage = (event.loaded / event.total) * 100;
+            progressBar.style.width = `${percentage}%`;
+            progressBar.setAttribute("aria-valuenow", percentage);
+          }
+        });
+
+        xhr.addEventListener("load", async () => {
+          const data = JSON.parse(xhr.responseText);
+
+          // Populate the table with data
+          const tbody = document.getElementById("data-tbody");
+          tbody.innerHTML = data
+            .map((row) => {
+              return `
+        <tr>
+          <td>${row.id_num}</td>
+          <td>${row.name}</td>
+          <td>${row.gender}</td>
+          <td>${row.shoe_size_left}</td>
+          <td>${row.arch_length_left}</td>
+          <td>${row.arch_width_left}</td>
+          <td>${row.heel_width_left}</td>
+          <td>${row.foot_length_left}</td>
+          <td>${row.foot_width_left}</td>
+          <td>${row.ball_girth_left}</td>
+          <td>${row.arch_index_left}</td>
+          <td>${row.arch_ratio_left}</td>
+          <td>${row.shoe_size_right}</td>
+          <td>${row.arch_length_right}</td>
+          <td>${row.arch_width_right}</td>
+          <td>${row.heel_width_right}</td>
+          <td>${row.foot_length_right}</td>
+          <td>${row.foot_width_right}</td>
+          <td>${row.ball_girth_right}</td>
+          <td>${row.arch_index_right}</td>
+          <td>${row.arch_ratio_right}</td>
+        </tr>
+      `;
+            })
+            .join("");
+
           toggleDisplay(uploadBtn, true);
-        }
-        tableContainer.innerHTML = xhr.responseText;
-        uploadBtn.disabled = false;
-        toggleDisplay(document.getElementById("cancel-button"), true);
-        tableContainer.classList.add("show");
-      };
-      xhr.send(formData);
-    });
+        });
 
-  document
-    .getElementById("upload-to-db")
-    .addEventListener("click", async () => {
-      const spinner = document.querySelector("#upload-to-db .spinner-border");
-      const uploadText = document.getElementById("upload-text");
-      toggleDisplay(spinner, true);
-      toggleDisplay(uploadText, false);
-
-      const footDataElements = Array.from(
-        document.querySelectorAll(".foot-data")
-      );
-      const footDataArray = footDataElements.map((footDataElement) =>
-        JSON.parse(footDataElement.textContent)
-      );
-
-      const response = await fetch("/insert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(footDataArray),
+        xhr.send(formData);
       });
 
-      toggleDisplay(spinner, false);
-      toggleDisplay(uploadText, true);
+    document
+      .getElementById("upload-to-db")
+      .addEventListener("click", async () => {
+        const spinner = document.querySelector("#upload-to-db .spinner-border");
+        const uploadText = document.getElementById("upload-text");
+        toggleDisplay(spinner, true);
+        toggleDisplay(uploadText, false);
 
-      if (response.ok) {
-        alert("Data inserted successfully");
-      } else {
-        alert("Error inserting data");
-      }
-      DataUploadBtn.value = "";
-      tableContainer.innerHTML = "";
-      uploadBtn.disabled = true;
-      toggleDisplay(uploadBtn, false);
-      toggleDisplay(progressBar, false);
-      toggleDisplay(progress, false);
-    });
-</script>
+        const footDataElements = Array.from(
+          document.querySelectorAll(".foot-data")
+        );
+        const footDataArray = footDataElements.map((footDataElement) =>
+          JSON.parse(footDataElement.textContent)
+        );
+
+        const response = await fetch("/insert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(footDataArray),
+        });
+
+        toggleDisplay(spinner, false);
+        toggleDisplay(uploadText, true);
+
+        if (response.ok) {
+          alert("Data inserted successfully");
+        } else {
+          alert("Error inserting data");
+        }
+        DataUploadBtn.value = "";
+        tableContainer.innerHTML = "";
+        uploadBtn.disabled = true;
+        toggleDisplay(uploadBtn, false);
+        toggleDisplay(progressBar, false);
+        toggleDisplay(progress, false);
+      });
+  </script>
+</div>

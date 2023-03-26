@@ -48,7 +48,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #2470dc;
+  color: #e4630d;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -95,15 +95,6 @@ body {
  * Uploader 
  */
 
-#table-container {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  /* Add other styling properties as needed */
-}
-
-#table-container.show {
-  opacity: 1;
-}
 .progress {
   position: relative;
   height: 1rem;
@@ -119,6 +110,6 @@ body {
   justify-content: center;
   color: #fff;
   text-align: center;
-  background-color: #007bff;
+  background-color: rgb(255, 159, 64);
   transition: width 0.6s ease;
 }

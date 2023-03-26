@@ -107,18 +107,7 @@ app.post("/upload", upload.array("pdf"), async (req, res) => {
     fs.unlinkSync(pdfPath); // Delete the uploaded files
   }
 
-  res.render(
-    "partials/uploadTable",
-    { footDataArray, activePage: "partials/uploadTable" },
-    (err, html) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error rendering table");
-      } else {
-        res.send(html);
-      }
-    }
-  );
+  res.json(footDataArray); // Return JSON data
 });
 
 // define route to fetch table data
