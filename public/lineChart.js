@@ -27,7 +27,7 @@ fetch("/table-data")
             label: "扁平足程度",
             data: archRatios,
             borderColor: "rgb(255, 159, 64)",
-            backgroundColor: "rgba(255, 159, 64, 0.5)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
             tension: 0.3,
           },
         ],

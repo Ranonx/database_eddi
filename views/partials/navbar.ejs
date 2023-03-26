@@ -53,9 +53,12 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="users" class="align-text-bottom"></span>
-          Customers
+        <a
+          class="nav-link <%= activePage === 'uploadPage' ? 'active' : '' %>"
+          href="/uploadPage"
+        >
+          <span data-feather="file" class="align-text-bottom"></span>
+          上传数据
         </a>
       </li>
     </ul>
