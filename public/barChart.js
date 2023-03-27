@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+const barChartElement = document.getElementById("barChart");
+
+if (barChartElement) {
   console.log("barChart called");
   fetch("/table-data")
     .then((response) => response.json())
@@ -106,4 +108,4 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => {
       console.error(error);
     });
-});
+}

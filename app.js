@@ -110,18 +110,6 @@ app.post("/upload", upload.array("pdf"), async (req, res) => {
   res.json(footDataArray); // Return JSON data
 });
 
-// define route to fetch table data
-// app.get("/table-data", (req, res) => {
-//   queries.getFootData((error, tableData) => {
-//     if (error) {
-//       console.log(error);
-//       res.status(500).send("Internal server error");
-//     } else {
-//       res.json(tableData);
-//     }
-//   });
-// });
-
 app.get("/table-data", (req, res) => {
   const searchTerm = req.query.searchTerm;
   console.log(`recieved searchTerm: ${searchTerm}`);
