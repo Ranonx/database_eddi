@@ -68,16 +68,16 @@ function extractFootData(data) {
       gender: text[7],
       shoe_size_left: shoeSizeLeft,
       shoe_size_right: shoeSizeRight,
-      arch_length_left: parseFloat(text[31]),
-      arch_length_right: parseFloat(text[32]),
-      arch_width_left: parseFloat(text[33]),
-      arch_width_right: parseFloat(text[34]),
+      foot_length_left: parseFloat(text[31]),
+      foot_length_right: parseFloat(text[32]),
+      foot_width_left: parseFloat(text[33]),
+      foot_width_right: parseFloat(text[34]),
       heel_width_left: parseFloat(text[35]),
       heel_width_right: parseFloat(text[36]),
-      foot_length_left: parseFloat(text[37]),
-      foot_length_right: parseFloat(text[38]),
-      foot_width_left: parseFloat(text[39]),
-      foot_width_right: parseFloat(text[40]),
+      arch_length_left: parseFloat(text[37]),
+      arch_length_right: parseFloat(text[38]),
+      arch_width_left: parseFloat(text[39]),
+      arch_width_right: parseFloat(text[40]),
       ball_girth_left: parseInt(text[41], 10),
       ball_girth_right: parseInt(text[42], 10),
       arch_index_left: parseFloat(text[43]),
@@ -92,6 +92,7 @@ async function processPDFs(pdfPaths) {
   const footDataArray = [];
   for (const pdfPath of pdfPaths) {
     const footData = await extractFootData(pdfPath);
+
     footDataArray.push(footData);
   }
   console.log(footDataArray);
@@ -118,6 +119,7 @@ app.get("/table-data", (req, res) => {
       res.status(500).send("Error retrieving table data");
     } else {
       res.send(tableData);
+      console.log(tableData);
     }
   });
 });

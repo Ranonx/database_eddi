@@ -1,3 +1,13 @@
+/* Main */
+body {
+  font-size: 0.875rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+}
+
 :root {
   --table-cell-padding-y: 0.5rem;
   --table-cell-padding-x: 0.5rem;
@@ -5,12 +15,29 @@
   --table-cell-padding-x-sm: 0.25rem;
 }
 
-/* Example usage */
+/* table css */
 table td {
   padding-top: var(--table-cell-padding-y);
   padding-bottom: var(--table-cell-padding-y);
   padding-left: var(--table-cell-padding-x);
   padding-right: var(--table-cell-padding-x);
+  text-align: center;
+}
+
+table td:nth-child(3) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table {
+  margin: auto;
+  text-align: center;
+}
+
+td,
+th {
+  text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -20,15 +47,6 @@ table td {
     padding-left: var(--table-cell-padding-x-sm);
     padding-right: var(--table-cell-padding-x-sm);
   }
-}
-
-body {
-  font-size: 0.875rem;
-}
-
-.feather {
-  width: 16px;
-  height: 16px;
 }
 
 /*
