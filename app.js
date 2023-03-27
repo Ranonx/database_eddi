@@ -24,15 +24,15 @@ app.use(expressLayouts);
 
 // Routes
 app.get("/", (req, res) => {
-  res.render("layout", { activePage: "dashboard" });
+  res.render("dashboard", { activePage: "dashboard", pageTitle: "仪表板" });
 });
 
-app.get("/table", function (req, res) {
-  res.render("table", { activePage: "table" });
+app.get("/table", (req, res) => {
+  res.render("table", { activePage: "table", pageTitle: "足部数据" });
 });
 
-app.get("/uploadPage", function (req, res) {
-  res.render("uploadPage", { activePage: "uploadPage" });
+app.get("/uploadPage", (req, res) => {
+  res.render("uploadPage", { activePage: "uploadPage", pageTitle: "上传数据" });
 });
 
 // Upload data to table

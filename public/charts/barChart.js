@@ -92,7 +92,7 @@ if (barChartElement) {
               beginAtZero: true,
               title: {
                 display: true,
-                text: "Number of Participants",
+                text: "扁平足人数",
               },
             },
             x: {
