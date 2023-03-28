@@ -1,6 +1,11 @@
 const barChartElement = document.getElementById("barChart");
 
 if (barChartElement) {
+  const maleColor = "rgba(255, 159, 64, 0.2)";
+  const maleBorderColor = "rgb(255, 165, 0)";
+  const femaleColor = "rgba(255, 192, 203, 0.2)";
+  const femaleBorderColor = "rgb(255, 99, 132)";
+
   console.log("barChart called");
   fetch("/table-data")
     .then((response) => response.json())
@@ -67,8 +72,9 @@ if (barChartElement) {
                 flatfootednessCountsByGender.moderate.male,
                 flatfootednessCountsByGender.severe.male,
               ],
-              backgroundColor: "rgba(54, 162, 235, 0.5)",
-              borderColor: "rgb(54, 162, 235)",
+
+              backgroundColor: maleColor,
+              borderColor: maleBorderColor,
               borderWidth: 1,
               borderRadius: 30,
             },
@@ -79,8 +85,8 @@ if (barChartElement) {
                 flatfootednessCountsByGender.moderate.female,
                 flatfootednessCountsByGender.severe.female,
               ],
-              backgroundColor: "rgba(255, 99, 132, 0.5)",
-              borderColor: "rgb(255, 99, 132)",
+              backgroundColor: femaleColor,
+              borderColor: femaleBorderColor,
               borderWidth: 1,
               borderRadius: 30,
             },

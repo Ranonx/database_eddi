@@ -6,7 +6,7 @@ if (boxOneElement) {
     .then((data) => {
       console.log("table-data fetch called");
       // Get the necessary elements
-      const boxOneH2 = document.querySelector("#box-one h2");
+      const boxOneH2 = document.querySelector("#box-one h1");
       const boxOneP = document.querySelector("#box-one p");
 
       // Calculate the statistics
@@ -23,8 +23,7 @@ if (boxOneElement) {
       });
 
       // Update the content of the elements
-      boxOneH2.textContent = `扫描用户总数: ${totalUsers}`;
-      boxOneP.textContent = `其中男性用户${maleUsers}人，女性用户${femaleUsers}人。`;
+      boxOneH2.textContent = `${totalUsers}`;
     })
     .catch((error) => {
       console.error(error);
