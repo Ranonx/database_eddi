@@ -1,3 +1,17 @@
-<div class="table-responsive mb-4"><%- include('partials/statistics') %></div>
-<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-<canvas class="my-4 w-100" id="barChart" width="900" height="380"></canvas>
+<div class="row align-items-md-stretch">
+  <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+</div>
+
+<%- include('partials/statistics') %>
+<div class="row align-items-md-stretch">
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas class="my-4 w-100" id="barChart"></canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas class="my-4 w-100" id="pieChart"></canvas>
+    </div>
+  </div>
+</div>

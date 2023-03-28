@@ -87,6 +87,8 @@ if (barChartElement) {
           ],
         },
         options: {
+          aspectRatio: 2,
+          responsive: true,
           scales: {
             y: {
               beginAtZero: true,
