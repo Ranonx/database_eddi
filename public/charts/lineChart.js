@@ -17,7 +17,7 @@ if (lineChartElement) {
         (row) => (row.shoe_size_left + row.shoe_size_right) / 2
       );
       const archRatios = data.map(
-        (row) => (row.arch_ratio_left + row.arch_ratio_right) / 2
+        (row) => (row.arch_index_left + row.arch_index_right) / 2
       );
 
       // Render the line chart

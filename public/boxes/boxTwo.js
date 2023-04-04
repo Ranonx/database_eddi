@@ -12,7 +12,7 @@ if (boxTwoElement) {
 
       // Calculate the number of users with flatfoot
       const flatfootUsers = data.filter(
-        (user) => (user.arch_ratio_right + user.arch_ratio_left) / 2 >= 0.26
+        (user) => (user.arch_index_right + user.arch_index_left) / 2 >= 0.26
       );
 
       // Update the content of the elements

@@ -47,7 +47,7 @@ if (barChartElement) {
       Object.entries(participantsByGender).forEach(([gender, participants]) => {
         participants.forEach((participant) => {
           const archRatio =
-            (participant.arch_ratio_left + participant.arch_ratio_right) / 2;
+            (participant.arch_index_left + participant.arch_index_right) / 2;
           if (archRatio < 0.28) {
             flatfootednessCountsByGender.mild[gender]++;
           } else if (archRatio < 0.3) {
