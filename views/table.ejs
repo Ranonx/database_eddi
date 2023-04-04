@@ -12,27 +12,13 @@
         <th rowspan="2">身份证号</th>
         <th rowspan="2">姓名</th>
         <th rowspan="2">性别</th>
-        <th colspan="2">鞋码</th>
+        <th rowspan="2">年龄</th>
         <th colspan="2">足长</th>
-        <th colspan="2">足宽</th>
-        <th colspan="2">后跟宽度</th>
         <th colspan="2">足弓长度</th>
-        <th colspan="2">足弓宽度</th>
-        <th colspan="2">球围</th>
+        <th colspan="2">鞋码</th>
         <th colspan="2">足弓指数</th>
-        <th colspan="2">足弓比例</th>
       </tr>
       <tr>
-        <th>左脚</th>
-        <th>右脚</th>
-        <th>左脚</th>
-        <th>右脚</th>
-        <th>左脚</th>
-        <th>右脚</th>
-        <th>左脚</th>
-        <th>右脚</th>
-        <th>左脚</th>
-        <th>右脚</th>
         <th>左脚</th>
         <th>右脚</th>
         <th>左脚</th>
@@ -61,30 +47,21 @@
       .map((row) => {
         return `
         <tr>
-  <td>${row.id}</td>
-  <td>${row.id_num}</td>
-  <td>${row.name}</td>
-  <td>${row.gender}</td>
-  <td>${row.shoe_size_left}</td>
-  <td>${row.shoe_size_right}</td>
-  <td>${row.foot_length_left}</td>
-  <td>${row.foot_length_right}</td>
-  <td>${row.foot_width_left}</td>
-  <td>${row.foot_width_right}</td>
-  <td>${row.heel_width_left}</td>
-  <td>${row.heel_width_right}</td>
-  <td>${row.arch_length_left}</td>
-  <td>${row.arch_length_right}</td>
-  <td>${row.arch_width_left}</td>
-  <td>${row.arch_width_right}</td>
-  <td>${row.ball_girth_left}</td>
-  <td>${row.ball_girth_right}</td>
-  <td>${row.arch_index_left}</td>
-  <td>${row.arch_index_right}</td>
-  <td>${row.arch_ratio_left}</td>
-  <td>${row.arch_ratio_right}</td>
-</tr>
-    `;
+          <td>${row.id}</td>
+          <td>${row.id_num}</td>
+          <td>${row.name}</td>
+          <td>${row.gender}</td>
+          <td>${row.age}</td>
+          <td>${row.feet_length_left}</td>
+          <td>${row.feet_length_right}</td>
+          <td>${row.arch_length_left}</td>
+          <td>${row.arch_length_right}</td>
+          <td>${row.shoe_size_left}</td>
+          <td>${row.shoe_size_right}</td>
+          <td>${row.arch_index_left}</td>
+          <td>${row.arch_index_right}</td>
+        </tr>
+        `;
       })
       .join("");
   };
