@@ -119,7 +119,6 @@ app.get("/table-data", (req, res) => {
       res.status(500).send("Error retrieving table data");
     } else {
       res.send(tableData);
-      console.log(tableData);
     }
   });
 });
